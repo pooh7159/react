@@ -9,6 +9,7 @@ function App() {
     if(toDo === ""){
       return;
     }
+    //함수로 set 하게되면 첫번째 인자는 current 갑
     setToDos((currentArray) => [toDo, ...currentArray]);
     setToDo("");
   };
@@ -20,6 +21,10 @@ function App() {
           <input onChange={onChange} value={toDo} type="text" placeholder="Write your to do.."></input>
           <button>등록</button>
         </form>
+        <hr />
+        <ul>
+          {toDos.map((item, index)=> <li key={index}>{item}</li>) }
+        </ul>
     </div>
   );
 }

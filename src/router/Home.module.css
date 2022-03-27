@@ -1,0 +1,21 @@
+.container {
+    height: 100%;
+}
+
+.slide_box {
+    padding : 0 0 40px 0;
+    border-style: dashed;
+    border-width: medium;
+    border-color: red;
+}
+
+.title {
+    text-align: center;
+    font-size: 42px;
+}
+
+.title a {
+    /* css에서 a태그는 react 의 like와 동일하게 판단 */
+    color: white;
+    text-decoration: none;
+}

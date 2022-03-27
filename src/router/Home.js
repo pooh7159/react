@@ -3,14 +3,15 @@ import Movie from "../components/Movie";
 import navList from "../atom/NavList";
 import { Link } from "react-router-dom";
 import Slide from "../components/Slide";
+import styles from "./Home.module.css";
 
 function Home() {
   return (
-    <div>
+    <div className={styles.container}>
       {navList.map(slide => {
         return (
-          <div>
-            <h3>
+          <div className={styles.slide_box}>
+            <h3 className={styles.title}>
               <Link to={`/page/${slide.path}/1`}>
                 <i></i>
                 <span>{slide.title}</span>

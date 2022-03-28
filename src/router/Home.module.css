@@ -4,9 +4,6 @@
 
 .slide_box {
     padding : 0 0 40px 0;
-    border-style: dashed;
-    border-width: medium;
-    border-color: red;
 }
 
 .title {
@@ -18,4 +15,12 @@
     /* css에서 a태그는 react 의 like와 동일하게 판단 */
     color: white;
     text-decoration: none;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+.title a i {
+    margin-right: 20px;
 }

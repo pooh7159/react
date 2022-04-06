@@ -1,32 +1,39 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import Point from "../components/Point";
+import styles from "./Home.module.css";
+import Loading from "../components/Loading";
 
 function Detail() {
-    const { id } = useParams();
+    const {id} = useParams();
     const [loading, setLoading] = useState(true);
-    const [detail, setDetail] = useState({});
+    const [datas, setDatas] = useState({});
 
-    const getMovieDetail = async () => {
-      const json = await ( await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`) ).json();
-      setDetail(json);
-      setLoading(false);
-    }
-    useEffect( () => {
-      getMovieDetail();
-    } , []);
-  
-
+    useEffect(() => {
+        fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+        .then(response => response.json())
+        .then(json => {
+            setDatas(json.data.movie);
+            setLoading(false);
+        })
+    }, []);
+    console.log(datas);
     return (
-        <div>
-          {loading ? <strong>Loading ..</strong> : 
-            <div>
-               <h1>{detail.data.movie.title}</h1>
-               <h1>{detail.data.movie.download_count}</h1>
-               <h1>{detail.data.movie.description_intro}</h1>
-               <h1>{detail.data.movie.description_full}</h1>
-               <img src={detail.data.movie.background_image} alt="bgim" ></img>
-            </div>
-          }
+        <div className={styles.container}>
+            {loading ? (
+                <Loading />
+            ) : (
+                <Point 
+                    background_image_original={datas.background_image_original}
+                    medium_cover_image={datas.medium_cover_image}
+                    url={datas.url}
+                    title_long={datas.title_long}
+                    rating={datas.rating}
+                    runtime={datas.runtime}
+                    genres={datas.genres}
+                    download_count={datas.download_count}             
+                />
+            )}
         </div>
     );
   }
